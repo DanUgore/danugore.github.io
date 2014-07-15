@@ -19,7 +19,7 @@
 			<div id="p1-pokemon" class="pokemon-pane" style="display: inline-block; width: 48%;">
 				<h3>P1</h3><!--<input id="p1-species">-->
 				<select id="p1-species" class="pkmSelect"></select><input id="p1-level" value=100 type=number max=100 min=1><i id="p1-gender"></i><br />
-				<select id="p1-type1" class="typeSelect"></select><select id="p1-type2" class="typeSelect"></select><select id="p1-type3" class="typeSelect" disabled></select>
+				<select id="p1-type1" class="typeSelect"></select><select id="p1-type2" class="typeSelect"><option value="--">--</option></select><select id="p1-type3" class="typeSelect" disabled><option value="--">--</option></select>
 				<table id="stats-table">
 					<thead>
 						<tr><th>Stats</th><td>Base</td><td>IVs</td><td>EVs</td><td>Value</td><td>Boosts</td><td>Eff. Stat</td></tr>
@@ -89,8 +89,8 @@
 					<tbody>
 						<tr id="move-1">
 							<th>Move 1</th>
-							<td><select class="moveSelect"></select></td>
-							<td><select class="typeSelect"></select></td>
+							<td><select class="moveSelect"><option value="--">--</option></select></td>
+							<td><select class="typeSelect"><option value="--">--</option></select></td>
 							<td><input type="number" min=0 max=255 disabled></td>
 							<td><select class="catSelect"></select></td>
 							<td><input type="number" min=1 max=64></td>
@@ -106,28 +106,27 @@
 		var genderIcon = doc.getElementById('p1-gender');
 		genderIcon.innerText = Display.genderSymbols['m'];
 		// Initialize Dropdowns
-		function loadDropdowns() {
+		function loadDropdowns(maxItCount) {
 			$dropdowns = $( "select" );
+			maxItCount = maxItCount || $dropdowns.length;
 			// console.log($dropdowns);
-			for (var index = 0; index < $dropdowns.length; i++) {
+			for (var index = 0; index < maxItCount; i++) {
 				$dropdown = $dropdowns.eq(index);
 				// if ($dropdown.children().length) continue;
 				var options = []; // Option Elements to be Appended
 				if ($dropdown.hasClass("typeSelect")) {
-					if ($dropdown.attr("id").charAt(7) !== '1') options.push('<option value="--">--</option>');
 					for (var type in Data.BattleTypeChart) options.push('<option value="'+type+'">'+type+'</option>');
-					$dropdown.html(options.join(''));
+					$dropdown.get(0).innerHTML += options.join('');
 					break;
 					// continue;
 				}
 				if ($dropdown.hasClass("moveSelect")) {
-					options.push('<option value="--">--</option>');
 					for (var id in Data.BattleMovedex) {
 						var move = Data.BattleMovedex[id];
 						if (id !== move.id) continue;
 						options.push('<option value="'+move.id+'">'+(move.isNonstandard?'Custom: ':'')+move.name+'</option>');
 					}
-					$dropdown.html(options.join(''));
+					$dropdown.get(0).innerHTML += options.join('');
 					// continue;
 				}
 				if ($dropdown.hasClass("catSelect")) {
@@ -136,11 +135,10 @@
 						'<option value="Special">Special</option>',
 						'<option value="Status">Status</option>'
 					];
-					$dropdown.html(options.join(''));
+					$dropdown.get(0).innerHTML += options.join('');
 					// continue;
 				}
 				if ($dropdown.hasClass("pkmSelect")) {
-					options.push('<option value="--">--</option>');
 					// Pokemon are placed in alphabetical order for ease of location.
 					var Pokedex = Data.BattlePokedex;
 					var ids = Object.keys(Pokedex).sort();
@@ -160,7 +158,7 @@
 						options.push('<option value="'+id+'">Custom: '+pkm.species+'</option>');
 					}
 					// $dropdown.html(options.join(''));
-					$dropdown.get(0).innerHTML = options.join('');
+					$dropdown.get(0).innerHTML += options.join('');
 					// continue;
 					// break;
 				}
