@@ -110,14 +110,13 @@
 			$dropdowns = $( "select" );
 			maxItCount = maxItCount || $dropdowns.length;
 			// console.log($dropdowns);
-			for (var index = 0; index < maxItCount; i++) {
+			for (var index = 0; index < maxItCount; index++) {
 				$dropdown = $dropdowns.eq(index);
 				// if ($dropdown.children().length) continue;
 				var options = []; // Option Elements to be Appended
 				if ($dropdown.hasClass("typeSelect")) {
 					for (var type in Data.BattleTypeChart) options.push('<option value="'+type+'">'+type+'</option>');
 					$dropdown.get(0).innerHTML += options.join('');
-					break;
 					// continue;
 				}
 				if ($dropdown.hasClass("moveSelect")) {
