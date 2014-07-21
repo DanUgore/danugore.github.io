@@ -10,7 +10,7 @@
 	<div id="d" style="width: 48%; display: inline; float: right; white-space: pre; word-wrap: normal;"></div>
 	<script>
 	$('#i').focus();
-	$('#i').val(":myProp\n::myVal\n\n:foo::bar\n\n:array\n::elem0:::anotherVal\n\n\n:array\n::elem1\n:::innerObj\n::::anotherArray:::::1\n::::anotherArray:::::2");
+	$('#i').val(":myProp\n::myVal\n\n:foo::bar\n\n:array\n::elem0:::anotherVal\n\n\n:array\n::elem1\n :::innerObj\n  ::::anotherArray:::::1\n  ::::anotherArray:::::2");
 	$('#d').text(JSON.stringify(TextParser.parseCustomFormat($('#i').val()), null, '\t'));
 	</script>
 	</body>
