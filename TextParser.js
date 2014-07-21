@@ -1,7 +1,7 @@
 TextParser = {};
 
 TextParser.parseCustomFormat = function (text) {
-	var content = text.replace(/\n/g,'').split(':');
+	var content = text.replace(/\n\s*/g,'').split(':'); // Removes newlines \n and leading spaces \s* after newlines.
 	var commands = {};
 	for (var i = 0, depth = 0, levels = []; i < content.length; i++) {
 		var arg = content[i];
