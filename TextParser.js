@@ -3,40 +3,16 @@ TextParser = {};
 TextParser.parseCustomFormat = function (text) {
 	var content = text.replace(/\n/g,'').split(':');
 	var commands = {};
-	// Eases the headache of rewriting this code a lot.
-	// topLevel is a bool to indicate whether our parent is the `commands` object.
-	var addLevel = function (parent, child, topLevel) {
-		if (topLevel) {
-			if (!parent[child]) parent[child] = true; // child: undefined
-			else if (typeof parent[child] === 'object' && parent[child].length) parent[child].push(true); // child: []
-			else parent[child] = [parent[child], true]; // child: value
-		} else {
-			// parent = [...] | make parent = [...,child]
-			// parent = {} | make parent[child] = true
-			// parent = {child:true} | make parent[child] = [true, true]
-			if (!parent[child]) { // parent = {...} | make parent[child] = true
-				parent[child] = true;
-			} else if (typeof parent[child] !== 'object') { // parent[child] = ... | make parent[child] = [..., true]
-				var val = parent[child]; 
-				parent[child] = {};
-				parent[child] = [val, true];
-			} else if (parent[child].length) {
-				parent[child].push(true);
-			} else {
-				parent[child] = [parent[child], true];
-			}
-		}
-	};
 	for (var i = 0, depth = 0, levels = []; i < content.length; i++) {
 		var arg = content[i];
 		if (!arg) { // "" means consecutive. Go down one level.
 			depth++;
 			continue;
 		}
-		if (!levels[0]) depth = 0; // If we go down but there were no levels to go down. Go back to top.
+		if (!levels[depth-1]) depth = 0; // If we go down but there were no levels above use... then we must be at the top.
 		if (!depth) { // Make New Property
 			addLevel(commands, arg, true);
-			levels[depth] = arg;
+			levels = [arg];
 			continue;
 		}
 		// TRAVERSING THE DEPTHS!!!
@@ -104,6 +80,32 @@ TextParser.parseCustomFormat = function (text) {
 		levels[depth] = arg;
 		depth = 0;
 	}
-	return commands; // addEffect = "status" -> addEffect = {"status":true}
+	return commands; // Return the object built from the parsed text
+	
+	// Define addLevel() function
+	// Eases the headache of rewriting this code a lot.
+	function addLevel(parent, child, topLevel) {
+		// topLevel is a bool to indicate whether our parent is the `commands` object.
+		if (topLevel) {
+			if (!parent[child]) parent[child] = true; // child: undefined
+			else if (typeof parent[child] === 'object' && parent[child].length) parent[child].push(true); // child: []
+			else parent[child] = [parent[child], true]; // child: value
+		} else {
+			// parent = [...] | make parent = [...,child]
+			// parent = {} | make parent[child] = true
+			// parent = {child:true} | make parent[child] = [true, true]
+			if (!parent[child]) { // parent = {...} | make parent[child] = true
+				parent[child] = true;
+			} else if (typeof parent[child] !== 'object') { // parent[child] = ... | make parent[child] = [..., true]
+				var val = parent[child]; 
+				parent[child] = {};
+				parent[child] = [val, true];
+			} else if (parent[child].length) {
+				parent[child].push(true);
+			} else {
+				parent[child] = [parent[child], true];
+			}
+		}
+	};
 }
 
