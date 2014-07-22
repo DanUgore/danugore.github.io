@@ -15,7 +15,7 @@
 	function parseInput() {
 		var json = JSON.stringify(TextParser.parseCustomFormat($('#i').val()), null, '\t');
 		$('#d').text(json);
-		$('#m').text('Minified: '+json.replace(/\n\s*/g, ''));
+		$('#m').text('Minified: '+$('#i').val().replace(/\n\s*/g, ''));
 	}
 	parseInput();
 	</script>
