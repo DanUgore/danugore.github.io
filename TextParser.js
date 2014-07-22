@@ -38,7 +38,6 @@ TextParser.parseCustomFormat = function (text) {
 				currentLevel = currentLevel[levels[d]];
 			}
 		}
-		//addLevel(currentLevel[levels[depth-1]], arg);
 		// parent = true | make parent = child
 		// parent = child | make parent = {child:[true, true]}
 		// parent = value | make parent = {value: true,child: true}
@@ -64,12 +63,8 @@ TextParser.parseCustomFormat = function (text) {
 				} else { // parent[n] = value
 					var val = currentLevel[levels[depth-1]][n];
 					currentLevel[levels[depth-1]][n] = {};
-					currentLevel[levels[depth-1]][n][val] = true;
-					if (currentLevel[levels[depth-1]][n][arg]) currentLevel[levels[depth-1]][n][arg] = [val, true];
-					else {
-						currentLevel[levels[depth-1]][n][val] = true;
-						currentLevel[levels[depth-1]][n][arg] = true;
-					}
+					addLevel(currentLevel[levels[depth-1]][n], val);
+					addLevel(currentLevel[levels[depth-1]][n], arg);
 				}
 			} else {
 				addLevel(currentLevel[levels[depth-1]][n], arg);
