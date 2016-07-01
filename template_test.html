@@ -13,13 +13,13 @@
 	template = ""; parsed = ""; json = "";
 	$('#i').focus();
 	$('#i').val("This placeholder will resolve to {placeholder}!");
-	$('#d').val("{\n\t\"placeholder\": \"My Own Message\",\n\tunused: \"\"\n}");
+	$('#d').val("{\n\t\"placeholder\": \"My Own Message\",\n\t\"unused\": \"\"\n}");
 	function parseInput() {
-	  if (parsed === $('#i').val() && json === $('#d').val()) return;
-	  template = $('#i').val();
+		if (parsed === $('#i').val() && json === $('#d').val()) return;
+		template = $('#i').val();
 		json = $('#d').val();
 		parsed = fillTemplate(template, JSON.parse(json));
-		$('#i').text(parsed);
+		$('#i').val(parsed);
 	}
 	function restore() {
 	  $('#i').text(template);
