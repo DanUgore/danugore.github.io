@@ -7,22 +7,31 @@
 	<body>
 	A simple templating engine.
 	<button onclick="parseInput()">Template!</button><button onclick="restoreInput()">Restore!</button><br />
-	<textarea id="i" style="width: 48%; height: 500px;"></textarea>
-	<textarea id="d" style="width: 48%; height: 500px;"></textarea>
+	<textarea id="tmp" style="width: 48%; height: 500px;"></textarea>
+	<textarea id="ph" style="width: 48%; height: 500px; white-space: nowrap;"></textarea>
+	<div id="error" style="color: red;"></div>
 	<script>
 	template = ""; parsed = ""; json = "";
-	$('#i').focus();
-	$('#i').val("This placeholder will resolve to {{placeholder}}!");
-	$('#d').val("{\n\t\"placeholder\": \"My Own Message\",\n\t\"unused\": \"\"\n}");
+	$('#tmp').focus();
+	$('#tmp').val("This placeholder will resolve to {{placeholder}}!");
+	$('#ph').val("{\n  \"placeholder\": \"My Own Message\",\n  \"unused\": \"\"\n}");
 	function parseInput() {
-		if (parsed === $('#i').val() && json === $('#d').val()) return;
-		template = $('#i').val();
-		json = $('#d').val();
+		if (parsed === $('#tmp').val() && json === $('#ph').val()) return;
+		var placeholders;
+		try {
+			placeholders = JSON.parse(json);
+			$('#error').text("");
+		} catch (e) {
+			$('#error').text(e.name+": "+e.message);
+			return;
+		}
+		template = $('#tmp').val();
+		json = $('#ph').val();
 		parsed = fillTemplate(template, JSON.parse(json));
-		$('#i').val(parsed);
+		$('#tmp').val(parsed);
 	}
 	function restoreInput() {
-	  $('#i').val(template);
+	  $('#tmp').val(template);
 	}
 	</script>
 	</body>
