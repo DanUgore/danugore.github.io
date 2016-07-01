@@ -93,7 +93,7 @@ fillTemplate = function (text, replacements, debug) {
 							var arr = [].concat(rep[phname]); // Ensures it's an array.
 							out += arr.map(dict => format(fmt, dict, debug)).join(sep);
 						} else {
-							out += lastdelim + ph + token + sep + token + lastdelim + fmt + token;
+							out += lastdelim + ph + token + sep + lastdelim + fmt + token;
 						}
 						STATE = "NORM";
 						ph = ""; sep = ""; fmt = ""; break;
