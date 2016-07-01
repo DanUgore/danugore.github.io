@@ -7,7 +7,7 @@
 */
 
 fillTemplate = function (text, replacements, debug) {
-	var format = sf.format;
+	var format = fillTemplate;
 	var rep = replacements || {};
 	var delimiters = "{}[]";
 	var splitrx = new RegExp("("+(delimiters.split("").map(ch => "\\"+ch+"{2}").join("|"))+")");
