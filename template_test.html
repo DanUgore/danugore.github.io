@@ -25,21 +25,21 @@ List placeholders repeat the given template and place the separator between them
 
 Templates inside of List Placeholders ignore outside placeholder names.`);
 	$('#ph').val(`{
-	"example 1": "My New Message",
-	"example 2": [
-		{
-			"number": "1",
-			"name": "Alpha"
-		},
-		{
-			"number": "2",
-			"name": "Beta"
-		},
-		{
-			"number": "3",
-			"name": "Gamma"
-		}
-	]
+  "example 1": "My New Message",
+  "example 2": [
+    {
+      "number": "1",
+      "name": "Alpha"
+    },
+    {
+      "number": "2",
+      "name": "Beta"
+    },
+    {
+      "number": "3",
+      "name": "Gamma"
+    }
+  ]
 }`	);
 	function parseInput() {
 		if (parsed === $('#tmp').val() && json === $('#ph').val()) return;
