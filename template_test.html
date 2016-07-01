@@ -5,14 +5,15 @@
 		<script src="text-formatter.js"></script>
 	</head>
 	<body>
-	A minifiable syntax for defining data!
+	A simple templating engine.
 	<button onclick="parseInput()">Template!</button><button onclick="restoreInput()">Restore!</button><br />
 	<textarea id="i" style="width: 48%; height: 500px;"></textarea>
 	<textarea id="d" style="width: 48%; height: 500px;"></textarea>
 	<script>
 	template = ""; parsed = ""; json = "";
 	$('#i').focus();
-	$('#i').val(":myProp\n::myVal\n\n:foo::bar\n\n:array\n::elem0:::anotherVal\n\n\n:array\n::elem1\n :::innerObj\n  ::::anotherArray:::::1\n  ::::anotherArray:::::2");
+	$('#i').val("This placeholder will resolve to {placeholder}!");
+	$('#d').val("{\n\t\"placeholder\": \"My Own Message\",\n\tunused: \"\"\n}");
 	function parseInput() {
 	  if (parsed === $('#i').val() && json === $('#d').val()) return;
 	  template = $('#i').val();
