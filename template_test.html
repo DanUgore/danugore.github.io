@@ -18,6 +18,7 @@
 	function parseInput() {
 		if (parsed === $('#tmp').val() && json === $('#ph').val()) return;
 		var placeholders;
+		json = $('#ph').val();
 		try {
 			placeholders = JSON.parse(json);
 			$('#error').text("");
@@ -26,7 +27,6 @@
 			return;
 		}
 		template = $('#tmp').val();
-		json = $('#ph').val();
 		parsed = fillTemplate(template, JSON.parse(json));
 		$('#tmp').val(parsed);
 	}
