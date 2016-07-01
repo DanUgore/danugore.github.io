@@ -12,7 +12,7 @@
 	<script>
 	template = ""; parsed = ""; json = "";
 	$('#i').focus();
-	$('#i').val("This placeholder will resolve to {placeholder}!");
+	$('#i').val("This placeholder will resolve to {{placeholder}}!");
 	$('#d').val("{\n\t\"placeholder\": \"My Own Message\",\n\t\"unused\": \"\"\n}");
 	function parseInput() {
 		if (parsed === $('#i').val() && json === $('#d').val()) return;
@@ -22,7 +22,7 @@
 		$('#i').val(parsed);
 	}
 	function restore() {
-	  $('#i').text(template);
+	  $('#i').val(template);
 	}
 	</script>
 	</body>
