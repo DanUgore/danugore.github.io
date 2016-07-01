@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="./lib/jquery-1.11.1.min.js"></script>
+		<script src="text-formatter.js"></script>
+	</head>
+	<body>
+	A minifiable syntax for defining data!
+	<button onclick="parseInput()">Template!</button><button onclick="restoreInput()">Restore!</button><br />
+	<textarea id="i" style="width: 48%; height: 500px;"></textarea>
+	<textarea id="d" style="width: 48%; height: 500px;"></textarea>
+	<script>
+	template = ""; parsed = ""; json = "";
+	$('#i').focus();
+	$('#i').val(":myProp\n::myVal\n\n:foo::bar\n\n:array\n::elem0:::anotherVal\n\n\n:array\n::elem1\n :::innerObj\n  ::::anotherArray:::::1\n  ::::anotherArray:::::2");
+	function parseInput() {
+	  if (parsed === $('#i').val() && json === $('#d').val()) return;
+	  template = $('#i').val();
+		json = $('#d').val();
+		parsed = fillTemplate(template, JSON.parse(json));
+		$('#i').text(parsed);
+	}
+	function restore() {
+	  $('#i').text(template);
+	}
+	</script>
+	</body>
+</html>
