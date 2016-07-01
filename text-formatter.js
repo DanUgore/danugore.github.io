@@ -1,4 +1,3 @@
-var sf = module.exports = {}
 /* Formats text and replaces {{placeholders}} with respective text.
  * {{placeholder}} is replaced with `replacements["placeholder"]`
  * Recursive replacement [[placeholder]]seperator[[format]]
@@ -7,7 +6,7 @@ var sf = module.exports = {}
  * - Join with the `seperator`
 */
 
-sf.format = sf.tkformat = function (text, replacements, debug) {
+fillTemplate = function (text, replacements, debug) {
 	var format = sf.format;
 	var rep = replacements || {};
 	var delimiters = "{}[]";
@@ -84,14 +83,12 @@ sf.format = sf.tkformat = function (text, replacements, debug) {
 						ph = ""; sep = ""; fmt = ""; break;					
 					case "RFMT":
 						open--;
-						// if (debug) console.log("PH: "+ph+"\nSEP: "+sep+"\nFMT: "+fmt);
 						if (open) {
 							fmt += token; delim = false;
 							break;
 						}
 						var phname = ph.trim();
 						var replace = phname in rep;
-						if (debug) console.log(format("Replace: {{a}}\nPH: '{{b}}'\nSEP: '{{c}}'\nFMT: '{{d}}'\n", {a:replace,b:ph,c:sep,d:fmt}));
 						if (replace) {
 							var arr = [].concat(rep[phname]); // Ensures it's an array.
 							out += arr.map(dict => format(fmt, dict, debug)).join(sep);
