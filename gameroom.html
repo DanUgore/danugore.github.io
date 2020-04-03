@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <link href="./gameroom.css" rel="stylesheet">
+</head>
+<body>
+  <!--<div><img src="./playmat.jpg" class="playmat-img" /></div>-->
+  <div class="container">
+    <div class="cardviewer">
+      <div class="cardview-top">
+        <div class="cardart"><img class="cardimg" src="./img/B16Tormod.png" /></div>
+        <div class="carddetails">
+          <div class="cardtext">
+            <span class="cardno">No. B16-073R</span><br>
+            <span class="cardname">Tormod:</span><br>
+            <span class="cardtitle">Maturing Flame</span><br>
+            Cost: <span class="cardcost">5/3</span> | Range: <span class="cardrng">1-2</span><br>
+            ATK: <span class="cardatk">60</span> | SUPP: <span class="cardsup">20</span><br>
+          </div>
+          <div class="cardattr">
+            <img src="./img/colors/Green_(Cipher).png" width="16px"/>
+            <img src="./img/types/Male_(Cipher).png" width="16px"/>
+            <img src="./img/types/Tome_(Cipher).png" width="16px"/>
+          </div>
+        </div>
+      </div>
+      <div class="cardskills">
+        <div class="skillcontainer">
+          <img src="./img/icons/icon_zidou_clear.png" width="16px" /> <span>"I'm not a kid"</span><br>
+          <code>When you Class Change into this unit, draw 1 card.</code>
+        </div>
+        <div class="skillcontainer">
+          <img src="./img/icons/icon_zyouzi_clear.png" width="16px" /> <span>Fiery Leader</span><br>
+          <code>During your turn, if this unit is in the Front Line, this unit gains +20 ATK.</code>
+        </div>
+        <div class="skillcontainer">
+          <img src="./img/icons/icon_zidou_clear.png" width="16px" /> <span>Celerity Rivaling the Laguz</span><br>
+          <code>At the end of each player's turn, you may move this unit.</code>
+        </div>
+      </div>
+    </div>
+    <div class="board">
+      <div class="playmat opposite">
+      </div>
+      <div class="playmat">
+        <div class="card rightmat">
+          <img class="cardimg" src="./img/cardback.jpg" />
+        </div>
+      </div>
+      <div id="hand"></div>
+    </div>
+    <div class="chat-window">
+      <div id="chat-log">
+        <div class="chatmessage">P1 deployed Msg 1</div>
+        <div class="chatmessage">P1A attacks P2A Msg 2</div>
+        <div class="chatmessage">Msg 3</div>
+        <div class="chatmessage">Msg 4</div>
+        <div class="chatmessage">Msg 5</div>
+        <div class="chatmessage">Msg 6</div>
+      </div>
+      <input id="chat-input"></input>
+    </div>
+  </div>
+</body>
+</html>

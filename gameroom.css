@@ -1,0 +1,101 @@
+.cardviewer {
+  display: inline-block;
+  width: 300px;
+}
+.cardart {
+  width: 45%;
+  display: inline-block;
+}
+.carddetails {
+  width: 50%;
+  display: inline-block;
+  margin-left: 2px;
+}
+.cardskills {
+  height: 70%;
+}
+
+.playmat {
+  width: 508px;
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+  background-image: url(./playmat.png);
+  background-size: contain;
+}
+.opposite {
+  transform: rotate(180deg);
+}
+.tapped {
+  transform: rotate(90deg);
+}
+.cardimg {
+  width: 100%;
+}
+.board, .chat-window, .cardviewer {
+  display: inline-block;
+}
+div.card, div.cardzone {
+  display: inline-block;
+  position: absolute;
+}
+.card {
+  width: 63px;
+}
+.bondzone {
+  top: 218px;
+  left: 346px;
+  position: absolute;
+}
+.bond.card {
+  /* width: 62px; */
+  left: 0px;
+  /* Offset by -15px per Bond, Fits 19 until Offset needs adjustment */
+  /* Offset by -10px fits 28, Offset by 5px fits  */
+  /* Offset by -5px fits 55, Any more than that is stupid  */
+}
+.orbzone {
+  top: 104px;
+  height: 180px;
+  left: 10px;
+  position: absolute;
+}
+.orb {
+  /* Offset by -21px per Orb */
+}
+.boundless {
+  top: 207px;
+  left: -17px;
+}
+.rightmat {
+  left: 436px;
+}
+.deckzone {
+  top: 102px;
+}
+.retreatzone {
+  top: 207px;
+}
+.support {
+  top: 0px;
+}
+.support.failed {
+  opacity: 0.6;
+}
+.support.active {
+  border: 2px solid purple;
+  /* width: 60px; */
+}
+.deployed, .deployed img {
+  width: 45px;
+}
+.frontline {
+  top: 15px;
+}
+.backline {
+  top: 120px;
+}
+.deployed.centered {
+  left: 232px;
+  /* Offset by 48px per direction, Fits 7 per Line */
+}
